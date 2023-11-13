@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import Bottleneck from 'bottleneck';
 
 const limiter = new Bottleneck({
-    minTime: 400 // 200ms between requests
+    minTime: 300 // 200ms between requests
 });
 
 export default function Dictionary() {
 
     const searchBox = document.getElementById('searchbox');
     const [word, setWord] = useState();
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('Bazzinga');
 
     useEffect(() => {
         limiter.schedule(() => fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + input))
@@ -37,7 +37,7 @@ export default function Dictionary() {
                 <div className="flex justify-around">
                     <input id="searchbox"
                         type="text"
-                        //placeholder="hello"
+                        placeholder="Bazzinga"
                         className="shadow appearance-none border rounded mr-3 w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         onKeyDown={(e) => {
                             if (e.keyCode === 13) {
