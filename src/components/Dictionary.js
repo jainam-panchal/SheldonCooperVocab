@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Bottleneck from 'bottleneck';
 
 const limiter = new Bottleneck({
-    minTime: 200 // 200ms between requests
+    minTime: 400 // 200ms between requests
 });
 
 export default function Dictionary() {
@@ -28,6 +28,9 @@ export default function Dictionary() {
     return (
         <div className="flex justify-center items-center h-[70%] px-4">
             <div className="flex flex-col items-center justify-center bg-gray-200 py-2">
+
+                <img src={process.env.PUBLIC_URL + '/cooper.jpg'} alt="Cooper" className="w-full max-w-md h-auto rounded-md mb-5" />
+
                 <label htmlFor="searchbox" className="text-3xl font-bold mb-1">Explore Cooper's Brain</label>
                 <p className="italic mb-4">btw penny says hiii :)</p>
 
