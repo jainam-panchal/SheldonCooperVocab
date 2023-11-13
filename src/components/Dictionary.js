@@ -43,9 +43,7 @@ export default function Dictionary() {
                         }} />
 
                     <button className="bg-blue-500 inline hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {
-
                         setInput(searchBox.value)
-
                     }}>
                         Enter
                     </button>
@@ -53,8 +51,8 @@ export default function Dictionary() {
                 {word ?
                     word.map((meaning) => {
                         return (
-                            <div className="  rounded mt-2">
-                                <p className="text-black mt-4" key={uuidv4()}>
+                            <div className=" rounded mt-2" key={uuidv4()}>
+                                <p className="text-black mt-4" >
                                     <span className="font-bold">{meaning.partOfSpeech + ': '}</span>
                                     {meaning.definitions[0].definition}
                                 </p>
