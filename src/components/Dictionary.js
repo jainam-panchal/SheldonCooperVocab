@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import Bottleneck from 'bottleneck';
 
 const limiter = new Bottleneck({
-    minTime: 300 // 200ms between requests
+    minTime: 200 // 200ms between requests
 });
 
 export default function Dictionary() {
 
     const searchBox = document.getElementById('searchbox');
     const [word, setWord] = useState();
-    const [input, setInput] = useState('Bazzinga');
+    const [input, setInput] = useState();
 
     useEffect(() => {
         limiter.schedule(() => fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + input))
