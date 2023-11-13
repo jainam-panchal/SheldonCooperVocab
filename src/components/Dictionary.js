@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import Bottleneck from 'bottleneck';
+
+const limiter = new Bottleneck({
+    minTime: 200 // 200ms between requests
+});
 
 export default function Dictionary() {
 
@@ -8,7 +13,7 @@ export default function Dictionary() {
     const [input, setInput] = useState();
 
     useEffect(() => {
-        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + input)
+        limiter.schedule(() => fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + input))
             .then(resp => resp.json())
             .then(data => {
                 if (data && data[0] && data[0].meanings) {
@@ -19,7 +24,6 @@ export default function Dictionary() {
                 }
             })
     }, [input, word])
-
 
     return (
         <div className="flex justify-center items-center h-[70%] px-4">
