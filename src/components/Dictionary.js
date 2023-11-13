@@ -18,7 +18,7 @@ export default function Dictionary() {
                     console.log("word, input", word, input)
                 }
             })
-    }, [input])
+    }, [input, word])
 
 
     return (
